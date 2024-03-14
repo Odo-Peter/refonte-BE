@@ -1,0 +1,15 @@
+type getUserCoursesResponse {
+  response: Response
+  courses: [Course]
+}
+
+type convertToUserCurrencyResponse {
+  response: Response
+  amount: Float
+  currency: String
+}
+
+type Query {
+  getUserCourses: getUserCoursesResponse
+  convertToUserCurrency(amount: Float): convertToUserCurrencyResponse
+}

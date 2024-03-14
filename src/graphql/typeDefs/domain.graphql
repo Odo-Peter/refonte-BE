@@ -1,0 +1,33 @@
+type Domain {
+  _id: String
+  name: String
+  courses: [Course]
+}
+
+type getDomainsResponse {
+  response: Response
+  domains: [Domain]
+}
+
+type groupCoursesByDomainResponse {
+  response: Response
+  domains: [Domain]
+}
+
+type createDomainResponse {
+  response: Response
+  domain: Domain
+}
+
+input DomainInput {
+  name: String!
+}
+
+type Query {
+  getDomains: getDomainsResponse
+  groupCoursesByDomain: groupCoursesByDomainResponse
+}
+
+type Mutation {
+  createDomain(payload: DomainInput): createDomainResponse
+}

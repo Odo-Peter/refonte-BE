@@ -1,0 +1,49 @@
+type User {
+  _id: String
+  name: String
+  email: String
+  contactNumber: String
+  role: Role
+  createdAt: Float
+  updatedAt: Float
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+type getUsersResponse {
+  response: Response
+  users: [User]
+}
+
+type registerUserResponse {
+  response: Response
+  user: User
+}
+
+type LoginUserResponse {
+  response: Response
+  token: String
+  user: User
+}
+
+type updatePasswordResponse {
+  response: Response
+}
+
+type Query {
+  getUsers: getUsersResponse
+}
+
+type Mutation {
+  registerUser(
+    name: String!
+    email: String!
+    password: String!
+  ): registerUserResponse
+  loginUser(email: String!, password: String!): LoginUserResponse
+  updatePassword(currentPassword:String!, newPassword:String!): updatePasswordResponse
+
+}

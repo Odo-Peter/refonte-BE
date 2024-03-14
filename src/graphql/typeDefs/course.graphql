@@ -1,0 +1,313 @@
+type Course {
+  _id: ID
+  name: String
+  image: String
+  domain: String
+  score: Float
+  url: String
+  banner: Banner
+  trustReviews: TrustReviews
+  overview: ProgramOverview
+  courseCurriculum: CourseCurriculum
+  programAdvisor: ProgramAdvisor
+  fees: Fees
+  importantDates: ImportantDates
+  faqs: FAQs
+}
+
+type Banner {
+  title: String
+  description: String
+  badge: String
+}
+
+input BannerInput {
+  title: String!
+  description: String!
+  badge: String!
+}
+
+input BannerUpdateInput {
+  title: String
+  description: String
+  badge: String
+}
+
+type TrustReviews {
+  googleReview: Float!
+  yelp: Float!
+  trustPilot: Float!
+}
+
+input TrustReviewsInput {
+  googleReview: Float!
+  yelp: Float!
+  trustPilot: Float!
+}
+
+input TrustReviewsUpdateInput {
+  googleReview: Float
+  yelp: Float
+  trustPilot: Float
+}
+
+type ProgramOverview {
+  programSummary: ProgramSummary
+  programSpecifics: ProgramSpecifics
+}
+
+input ProgramOverviewInput {
+  programSummary: ProgramSummaryInput
+  programSpecifics: ProgramSpecificsInput
+}
+
+input ProgramOverviewUpdateInput {
+  programSummary: ProgramSummaryUpdateInput
+  programSpecifics: ProgramSpecificsUpdateInput
+}
+
+type ProgramSummary {
+  p1: String
+  p2: String
+}
+
+input ProgramSummaryInput {
+  p1: String!
+  p2: String!
+}
+
+input ProgramSummaryUpdateInput {
+  p1: String
+  p2: String
+}
+
+type ProgramSpecifics {
+  requirements: String
+  period: String
+  dedicationTime: String
+  careerResult: String
+  competencies: [String!]!
+}
+
+input ProgramSpecificsInput {
+  requirements: String
+  period: String
+  dedicationTime: String
+  careerResult: String
+  competencies: [String!]!
+}
+
+input ProgramSpecificsUpdateInput {
+  requirements: String
+  period: String
+  dedicationTime: String
+  careerResult: String
+  competencies: [String]
+}
+
+type CourseCurriculum {
+  expertiseFeatured: [String!]!
+  toolsTaught: String
+}
+
+input CourseCurriculumInput {
+  expertiseFeatured: [String!]!
+  toolsTaught: String
+}
+
+input CourseCurriculumUpdateInput {
+  expertiseFeatured: [String]
+  toolsTaught: String
+}
+
+type ProgramAdvisor {
+  advisor: Advisor!
+  educationalPath: EducationalPath!
+}
+
+input ProgramAdvisorInput {
+  advisor: AdvisorInput!
+  educationalPath: EducationalPathInput!
+}
+
+input ProgramAdvisorUpdateInput {
+  advisor: AdvisorUpdateInput
+  educationalPath: EducationalPathUpdateInput
+}
+
+type Advisor {
+  name: String!
+  title: String!
+  departement: String!
+  description: String!
+  image: String!
+  signatures: String!
+}
+
+input AdvisorInput {
+  name: String!
+  title: String!
+  departement: String!
+  description: String!
+  image: String!
+  signatures: String!
+}
+
+input AdvisorUpdateInput {
+  name: String
+  title: String
+  departement: String
+  description: String
+  image: String
+  signatures: String
+}
+
+type EducationalPath {
+  programSyllabusUrl: String
+  previews: [Preview!]!
+}
+
+input EducationalPathInput {
+  programSyllabusUrl: String
+  previews: [PreviewInput!]!
+}
+
+input EducationalPathUpdateInput {
+  programSyllabusUrl: String
+  previews: [PreviewInput]
+}
+
+type Preview {
+  title: String!
+  description: String!
+}
+
+input PreviewInput {
+  title: String!
+  description: String!
+}
+
+type Fees {
+  total: Float!
+  installment1: Float!
+  installment2: Float!
+}
+
+input FeesInput {
+  total: Float!
+  installment1: Float!
+  installment2: Float!
+}
+
+input FeesUpdateInput {
+  total: Float
+  installment1: Float
+  installment2: Float
+}
+
+type ImportantDates {
+  deadlines: [Deadline!]!
+}
+
+input ImportantDatesInput {
+  deadlines: [DeadlineInput!]!
+}
+
+input ImportantDatesUpdateInput {
+  deadlines: [DeadlineInput]
+}
+
+type Deadline {
+  date: String!
+  description: String!
+}
+
+input DeadlineInput {
+  date: String!
+  description: String!
+}
+type FAQs {
+  faqs: [FAQ!]!
+}
+
+input FAQsInput {
+  faqs: [FAQInput!]!
+}
+
+input FAQsUpdateInput {
+  faqs: [FAQInput]
+}
+
+type FAQ {
+  question: String!
+  answer: String!
+}
+
+input FAQInput {
+  question: String!
+  answer: String!
+}
+
+enum CourseTag {
+  bestseller
+  new
+  popular
+}
+
+type getCoursesResponse {
+  response: Response
+  courses: [Course]
+  currency: String
+}
+
+type getCourseResponse {
+  course: Course
+  response: Response
+}
+
+type courseResponse {
+  response: Response
+  course: Course
+}
+
+input CourseInput {
+  name: String!
+  image: String!
+  domain: String!
+  score: Float!
+  url: String!
+  banner: BannerInput!
+  trustReviews: TrustReviewsInput!
+  overview: ProgramOverviewInput!
+  courseCurriculum: CourseCurriculumInput!
+  programAdvisor: ProgramAdvisorInput!
+  fees: FeesInput!
+  importantDates: ImportantDatesInput!
+  faqs: FAQsInput!
+}
+
+input CourseUpdateInput {
+  name: String
+  image: String
+  domain: String
+  score: Float
+  url: String
+  banner: BannerUpdateInput
+  trustReviews: TrustReviewsUpdateInput
+  overview: ProgramOverviewUpdateInput
+  courseCurriculum: CourseCurriculumUpdateInput
+  programAdvisor: ProgramAdvisorUpdateInput
+  fees: FeesUpdateInput
+  importantDates: ImportantDatesUpdateInput
+  faqs: FAQsUpdateInput
+}
+
+type Query {
+  getCourses: getCoursesResponse
+  getCourseByUrl(url: String!): getCourseResponse
+}
+
+type Mutation {
+  createCourse(payload: CourseInput): courseResponse
+  updateCourseByUrl(url: String!, course: CourseUpdateInput): courseResponse
+}

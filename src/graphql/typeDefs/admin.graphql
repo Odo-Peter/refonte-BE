@@ -1,0 +1,44 @@
+type Admin {
+  _id: String
+  name: String
+  email: String
+  contactNumber: String
+  role: Role
+  createdAt: Float
+  updatedAt: Float
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+type getAdminsResponse {
+  response: Response
+  admins: [Admin]
+}
+
+type registerAdminResponse {
+  response: Response
+  admin: Admin
+}
+
+type LoginAdminResponse {
+  response: Response
+  token: String
+  admin: Admin
+}
+
+# type updatePasswordResponse {
+#   response: Response
+# }
+
+type Query {
+  getAdmins: getAdminsResponse
+}
+
+type Mutation {
+  registerAdmin(name: String!, email: String!, password: String!): registerAdminResponse
+  loginAdmin(email: String!, password: String!): LoginAdminResponse
+  # updatePassword(currentPassword:String!, newPassword:String!): updatePasswordResponse
+}

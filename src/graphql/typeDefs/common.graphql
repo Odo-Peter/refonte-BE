@@ -1,0 +1,18 @@
+type Response {
+  status: Int
+  message: String
+}
+
+input sortingParams {
+  sortBy: String
+  order: String
+}
+
+input paginationParams {
+  page: Int
+  limit: Int
+}
+
+scalar JSON
+
+scalar Upload

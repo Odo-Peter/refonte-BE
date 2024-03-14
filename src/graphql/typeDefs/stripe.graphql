@@ -1,0 +1,75 @@
+input PaymentInput {
+  billingAddress: String
+  contactNumber: String
+  country: String
+  email: String
+  gender: String
+  name: String
+  program: String
+  price: Float
+  batch: String
+  dayTime: String
+  cohort: String
+  field: String
+  type: String
+}
+
+input PaymentInputEnrollment {
+  programId: String!
+  email: String!
+  name: String!
+  price: Float!
+}
+
+input customerIdsInput {
+  stripeFRCustomerId: String
+  stripeUKCustomerId: String
+}
+
+type customerIds {
+  stripeFRCustomerId: String
+  stripeUKCustomerId: String
+}
+
+type initPaymentEnrollmentResponse {
+  response: Response
+  url: String
+  customerIds: customerIds
+}
+
+type initPaymentResponse {
+  url: String
+  response: Response
+  token: String
+}
+
+type confirmStripePaymentResponse {
+  response: Response
+  user: User
+}
+
+type confirmStripePaymentEnrollmentResponse {
+  response: Response
+}
+
+type Query {
+  confirmStripePayment(
+    course: String
+    batch: String
+    dayTime: String
+    cohort: String
+    field: String
+    type: String
+    program: String
+  ): confirmStripePaymentResponse
+}
+
+type Mutation {
+  initStripePayment(paymentInput: PaymentInput): initPaymentResponse
+  initStripePaymentEnrollment(
+    paymentInput: PaymentInputEnrollment
+  ): initPaymentEnrollmentResponse
+  confirmStripePaymentEnrollment(
+    customerIds: customerIdsInput
+  ): confirmStripePaymentEnrollmentResponse
+}

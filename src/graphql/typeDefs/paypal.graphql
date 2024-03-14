@@ -1,0 +1,40 @@
+type confirmEnrollmentResponse {
+  userEnrollment: UserEnrollment
+  response: Response
+}
+
+input paypalPaymentInput {
+  orderId: String!
+  courseId: String
+  email: String!
+  name: String!
+  contactNumber: String!
+  batch: String
+  type: String!
+  dayTime: String
+  program: String
+  field: String
+  cohort: String
+}
+
+input paypalPaymentEnrollmentInput {
+  orderId: String!
+  program: String!
+  batch: String!
+  dayTime: String!
+  name: String!
+  email: String!
+  contactNumber: String!
+  country: String!
+  gender: String!
+  address: String!
+  price: Float!
+  discount: Float!
+}
+
+type Mutation {
+  confirmPaypalPayment(paymentInput: paypalPaymentInput): Response
+  confirmPaypalPaymentEnrollment(
+    paymentInput: paypalPaymentEnrollmentInput
+  ): confirmEnrollmentResponse
+}

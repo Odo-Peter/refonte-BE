@@ -1,0 +1,68 @@
+type UserEnrollment {
+  _id: String
+  program: String
+  batch: String
+  dayTime: String
+  name: String
+  email: String
+  contactNumber: String
+  country: String
+  gender: String
+  address: String
+  price: Float
+  discount: Float
+  createdAt: Float
+  updatedAt: Float
+}
+
+type UserEnrollmentWithProgram {
+  _id: String
+  program: Course
+  batch: String
+  dayTime: String
+  name: String
+  email: String
+  contactNumber: String
+  country: String
+  gender: String
+  address: String
+  price: Float
+  discount: Float
+  createdAt: Float
+  updatedAt: Float
+}
+
+type createUserEnrollmentResponse {
+  userEnrollment: UserEnrollment
+  response: Response
+}
+
+type getUserEnrollmentsByUserResponse {
+  userEnrollments: [UserEnrollmentWithProgram]
+  response: Response
+}
+
+input UserEnrollmentInput {
+  program: String!
+  batch: String!
+  dayTime: String!
+  name: String!
+  email: String!
+  contactNumber: String!
+  country: String!
+  gender: String!
+  address: String!
+  price: Float!
+  discount: Float!
+}
+
+type Query {
+  getUserEnrollmentsByUser(completed: Boolean): getUserEnrollmentsByUserResponse
+}
+
+type Mutation {
+  createUserEnrollement(
+    userEnrollmentInput: UserEnrollmentInput
+    withBoughtEmail: Boolean
+  ): createUserEnrollmentResponse
+}
