@@ -1,14 +1,11 @@
-import { Model } from "mongoose";
-import { IUser } from "../types/user";
-import bcrypt from "bcrypt";
+import { Model } from 'mongoose';
+import { IUser } from '../types/user';
+import bcrypt from 'bcrypt';
 
 export class UserDataSource {
   constructor(private user: Model<IUser>) {}
 
-  // TODO: create a new createAdmin when needed but don't use this for that
-  async create(
-    user: Omit<IUser, "validated" | "_id" | "role">
-  ): Promise<IUser> {
+  async create(user: Omit<IUser, 'validated' | '_id' | 'role'>): Promise<IUser> {
     const _user = new this.user(user);
     return _user.save();
   }
@@ -25,10 +22,7 @@ export class UserDataSource {
     return await this.user.findById(id);
   }
 
-  async updateUser(
-    filter: object,
-    userInput: Partial<IUser & { password?: string }>
-  ) {
+  async updateUser(filter: object, userInput: Partial<IUser & { password?: string }>) {
     let _userInput = userInput;
     if (_userInput.password) {
       _userInput.password = bcrypt.hashSync(_userInput.password, 10);
@@ -41,5 +35,18 @@ export class UserDataSource {
       },
       { new: true }
     );
+  }
+
+  async upgradeUserToAdmin(filter: object, options: object): Promise<IUser | null> {
+    return await this.user.findOneAndUpdate(filter, options, { new: true });
+  }
+
+  async getUpgradedUsers(): Promise<IUser[] | null> {
+    const users = await this.user.find({ role: 'ADMIN' });
+    return users;
+  }
+
+  async deleteUser(id: string): Promise<{} | null> {
+    return await this.user.findByIdAndDelete(id);
   }
 }

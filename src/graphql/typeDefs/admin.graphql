@@ -8,6 +8,16 @@ type Admin {
   updatedAt: Float
 }
 
+type User {
+  _id: String
+  name: String
+  email: String
+  contactNumber: String
+  role: Role
+  createdAt: Float
+  updatedAt: Float
+}
+
 enum Role {
   ADMIN
   USER
@@ -16,6 +26,11 @@ enum Role {
 type getAdminsResponse {
   response: Response
   admins: [Admin]
+}
+
+type getUsersResponse {
+  response: Response
+  users: [User]
 }
 
 type registerAdminResponse {
@@ -35,10 +50,13 @@ type LoginAdminResponse {
 
 type Query {
   getAdmins: getAdminsResponse
+  getAllUsers: getUsersResponse
 }
 
 type Mutation {
   registerAdmin(name: String!, email: String!, password: String!): registerAdminResponse
   loginAdmin(email: String!, password: String!): LoginAdminResponse
+  upgradeUser(email: String!): registerAdminResponse
   # updatePassword(currentPassword:String!, newPassword:String!): updatePasswordResponse
+  # upgradeUserToAdmin(filter: object, options: object): Promise<IUser | null>;
 }

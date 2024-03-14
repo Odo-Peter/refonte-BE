@@ -22,7 +22,7 @@ export class AdminDataSource {
     return await this.admin.findById(id);
   }
 
-  async updateAdmim(filter: object, adminInput: Partial<IAdmin & { password?: string }>) {
+  async updateAdmin(filter: object, adminInput: Partial<IAdmin & { password?: string }>) {
     let _adminInput = adminInput;
     if (_adminInput.password) {
       _adminInput.password = bcrypt.hashSync(_adminInput.password, 10);
@@ -36,6 +36,4 @@ export class AdminDataSource {
       { new: true }
     );
   }
-
-  // async updateUserToAdmin (email: string): Promise<IUser | null>
 }

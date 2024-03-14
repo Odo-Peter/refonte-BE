@@ -35,15 +35,11 @@ type updatePasswordResponse {
 
 type Query {
   getUsers: getUsersResponse
+  getUpgradedUsers: getUsersResponse
 }
 
 type Mutation {
-  registerUser(
-    name: String!
-    email: String!
-    password: String!
-  ): registerUserResponse
+  registerUser(name: String!, email: String!, password: String!): registerUserResponse
   loginUser(email: String!, password: String!): LoginUserResponse
-  updatePassword(currentPassword:String!, newPassword:String!): updatePasswordResponse
-
+  updatePassword(currentPassword: String!, newPassword: String!): updatePasswordResponse
 }

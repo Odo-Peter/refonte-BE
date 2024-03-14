@@ -29,14 +29,12 @@ export interface IUserMethods {
 export type TUserModel = Model<IUserDocument, object, IUserMethods>;
 
 export interface IUserDataSource {
-  create(
-    user: Omit<IUser, "validated" | "_id" | "role">
-  ): Promise<IUser | null>;
+  create(user: Omit<IUser, 'validated' | '_id' | 'role'>): Promise<IUser | null>;
   getUsers(): Promise<IUser[]>;
+  getUpgradedUsers(): Promise<IUser[]>;
   getByEmail(email: string): Promise<TUserModel | null>;
   getById(id: string): Promise<IUser | null>;
-  updateUser(
-    filter: object,
-    userInput: Partial<IUser & { password?: string }>
-  ): Promise<any>;
+  updateUser(filter: object, userInput: Partial<IUser & { password?: string }>): Promise<any>;
+  upgradeUserToAdmin(filter: object, options: object): Promise<IUser | null>;
+  deleteUser(id: string): Promise<{} | null>;
 }

@@ -16,7 +16,7 @@ export default async function getAdmins(parent: any, args: any, { dataSources }:
 
     // error handling is still poorly done
     return {
-      users: [],
+      admins: [],
       response: {
         status: 400,
         message: 'Failed to get administrators',

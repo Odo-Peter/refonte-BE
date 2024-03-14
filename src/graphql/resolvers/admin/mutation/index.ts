@@ -1,11 +1,13 @@
 import loginAdmin from './login';
 import registerAdmin from './register';
+import upgradeUser from './upgradeUser';
 // import updatePassword from "./updatePassword";
 
-const userMutation = {
+const adminMutation = {
   registerAdmin,
   loginAdmin,
+  upgradeUser,
   // updatePassword,
 };
 
-export default userMutation;
+export default adminMutation;
