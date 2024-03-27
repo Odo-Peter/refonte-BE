@@ -1,4 +1,4 @@
-import { Types } from "mongoose";
+import { Types } from 'mongoose';
 
 export interface ICourse {
   _id: string;
@@ -155,10 +155,11 @@ export interface ICourseDocument extends Document {
 export type TCourseModel = Model<ICourseDocument>;
 
 export interface ICourseDataSource {
-  create(course: Omit<ICourse, "_id">): Promise<ICourse | null>;
+  create(course: Omit<ICourse, '_id'>): Promise<ICourse | null>;
   getAll(): Promise<ICourse[]>;
   getByNameAndDomain(name: string, domain: string): Promise<ICourse | null>;
   getById(id: string): Promise<ICourse | null>;
   getByUrl(url: string): Promise<ICourse | null>;
   updateByUrl(url: string, course: Partial<ICourse>): Promise<ICourse | null>;
+  deleteCourse(id: string): Promise<{} | null>;
 }

@@ -32,9 +32,7 @@ export interface IAdminDataSource {
   create(admin: Omit<IAdmin, 'validated' | '_id' | 'role'>): Promise<IAdmin | null>;
   getAdmins(): Promise<IAdmin[]>;
   getByEmail(email: string): Promise<TUserModel | null>;
-  // getById(id: string): Promise<IAdmin | null>;
-  // updateUser(
-  //   filter: object,
-  //   userInput: Partial<IAdmin & { password?: string }>
-  // ): Promise<any>;
+  deleteAdmin(id: string): Promise<{} | null>;
+  getById(id: string): Promise<IAdmin | null>;
+  updateAdmin(filter: object, adminInput: Partial<IAdmin & { password?: string }>): Promise<any>;
 }

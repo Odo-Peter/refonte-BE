@@ -37,10 +37,6 @@ export class UserDataSource {
     );
   }
 
-  async upgradeUserToAdmin(filter: object, options: object): Promise<IUser | null> {
-    return await this.user.findOneAndUpdate(filter, options, { new: true });
-  }
-
   async getUpgradedUsers(): Promise<IUser[] | null> {
     const users = await this.user.find({ role: 'ADMIN' });
     return users;
@@ -48,5 +44,10 @@ export class UserDataSource {
 
   async deleteUser(id: string): Promise<{} | null> {
     return await this.user.findByIdAndDelete(id);
+  }
+
+  async deleteMultipleUser(id: string[]): Promise<{} | null> {
+    // TODO: Test if this should work
+    return await this.user.deleteMany({ id: { $in: [...id] } });
   }
 }

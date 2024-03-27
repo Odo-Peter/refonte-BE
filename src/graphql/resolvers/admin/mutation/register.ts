@@ -3,7 +3,7 @@ import logger from '../../../../utils/logger';
 
 export default async function registerAdmin(
   parent: any,
-  { name, email, password }: { name: string; email: string; password: string },
+  { name, email, contactNumber, password }: { name: string; email: string; password: string; contactNumber?: string },
   { dataSources }: { dataSources: IDataSources }
 ) {
   try {
@@ -18,7 +18,7 @@ export default async function registerAdmin(
         },
       };
     }
-    const admin = await dataSources.admin.create({ name, email, password });
+    const admin = await dataSources.admin.create({ name, email, password, contactNumber });
 
     return {
       admin: admin,

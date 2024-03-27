@@ -48,15 +48,21 @@ type LoginAdminResponse {
 #   response: Response
 # }
 
+type deleteAdminResponse {
+  response: Response
+}
+
 type Query {
   getAdmins: getAdminsResponse
   getAllUsers: getUsersResponse
+  getAllCourses: getCoursesResponse
 }
 
 type Mutation {
-  registerAdmin(name: String!, email: String!, password: String!): registerAdminResponse
+  registerAdmin(name: String!, email: String!, password: String!, contactNumber: String): registerAdminResponse
   loginAdmin(email: String!, password: String!): LoginAdminResponse
   upgradeUser(email: String!): registerAdminResponse
+  deleteAdmin(id: String!): deleteAdminResponse
   # updatePassword(currentPassword:String!, newPassword:String!): updatePasswordResponse
   # upgradeUserToAdmin(filter: object, options: object): Promise<IUser | null>;
 }

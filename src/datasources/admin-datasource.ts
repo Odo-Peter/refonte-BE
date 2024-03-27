@@ -36,4 +36,8 @@ export class AdminDataSource {
       { new: true }
     );
   }
+
+  async deleteAdmin(id: string): Promise<{} | null> {
+    return await this.admin.findByIdAndDelete(id);
+  }
 }

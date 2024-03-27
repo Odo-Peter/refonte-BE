@@ -27,7 +27,7 @@ export default async function upgradeUser(parent: any, { email }: { email: strin
     //   };
     // }
 
-    const updatedUser = await dataSources.user.upgradeUserToAdmin({ email: email }, { role: 'ADMIN' });
+    const updatedUser = await dataSources.user.updateUser({ email: email }, { role: 'ADMIN' });
 
     return {
       admin: updatedUser,

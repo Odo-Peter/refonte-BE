@@ -33,6 +33,7 @@ const loginAdmin = async (parent: any, { email, password }: any, { dataSources }
       id: admin._id.toString(),
       email,
       name: admin.name,
+      role: admin.role,
     });
 
     return {
